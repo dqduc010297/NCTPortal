@@ -1,0 +1,143 @@
+<div class="container-fluid">
+  <div class="border-custom">
+    <h1 class="heading">User Detail</h1>
+  </div>
+  <div class="container pt-2">
+    <div class="row">
+      <div class="row col-9 ml-1">
+        <button class="btn btn-secondary" (click)="pageBack()">Back</button>&nbsp;
+        <button class="btn btn-primary" (click)="update(userDetail.id)">Update</button>&nbsp;
+      </div>
+    </div>
+    <div class="row pt-2">
+      <div class="col-md-3 col-lg-3 " align="center">
+        <img alt="User Pic" src="https://image.flaticon.com/icons/svg/3/3641.svg" class="img-circle">
+      </div>
+      <div class="col-md-9 col-lg-9 ">
+
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>Full name:</th>
+              <td>{{userDetail.userName}}</td>
+            </tr>
+            <tr>
+              <th>Role:</th>
+              <td>{{userDetail.role}}</td>
+            </tr>
+            <tr>
+              <th>Email:</th>
+              <td>{{userDetail.email}}</td>
+            </tr>
+            <tr>
+              <th>Phone number:</th>
+              <td>{{userDetail.phoneNumber}}</td>
+            </tr>
+            <tr>
+              <th>Address:</th>
+              <td>132 Hàm Nghi, Quận 1, Tp. Hồ Chí Minh</td>
+            </tr>
+            <tr>
+              <th>Join date:</th>
+              <td>{{userDetail.createdDate | date:'medium'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Deactivate Modal-->
+<div class="modal fade" id="DeactivateModal" tabindex="-1" role="dialog" aria-labelledby="DeactivateModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="DeactivateModalLabel">Deactivate</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <p>Please fill your password to comfirm.</p>
+          <input class="form-control" type="password" id="Password" name="Password" placeholder="Password" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-custom" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-custom" data-dismiss="modal" data-toggle="modal" data-target="#DeactivateMessage">Confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--Deactivate Message Modal-->
+<div class="modal fade" id="DeactivateMessage" tabindex="-1" role="dialog" aria-labelledby="DeactivateMessageLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="DeactivateMessageLabel">Deactivate</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-danger">You have 7 days remain before your account being deactivate!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ChangePWD Modal-->
+<div class="modal fade" id="ChangePWDModal" tabindex="-1" role="dialog" aria-labelledby="ChangePWDModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ChangePWDModalLabel">Deactivate</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="CurrentPassword">Current Password</label>
+            <input type="password" class="form-control" name="CurrentPassword" id="CurrentPassword">
+          </div>
+          <div class="form-group">
+            <label for="NewPassword">New Password</label>
+            <input type="password" class="form-control" name="NewPassword" id="NewPassword">
+          </div>
+          <div class="form-group">
+            <label for="RePassword">Re-Password</label>
+            <input type="password" class="form-control" name="RePassword" id="RePassword">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-custom" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-custom" data-dismiss="modal" data-toggle="modal" data-target="#ChangePWDMessage">Confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--ChangePWD Message Modal-->
+<div class="modal fade" id="ChangePWDMessage" tabindex="-1" role="dialog" aria-labelledby="ChangePWDMessageLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title " id="ChangePWDMessageLabel">Password changed!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-success">Your password has been changed successfully!</p>
+      </div>
+    </div>
+  </div>
+</div>
+

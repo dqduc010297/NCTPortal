@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="border-custom">
+    <h1 class="heading">Account List</h1>
+  </div>
+
+  <div class="py-3">
+    <button class="btn btn-success" (click)="create()">Create</button>
+  </div>
+
+  <kendo-grid [data]="users"
+              [pageSize]="state.take"
+              [skip]="state.skip"
+              [sort]="state.sort"
+              [sortable]="true"
+              [pageable]="true"
+              [scrollable]="'scrollable'"
+              [group]="state.group"
+              filterable="menu"
+              [filter]="state.filter"
+              [selectable]="true"
+              (dataStateChange)="dataStateChange($event)">
+
+    <kendo-grid-column field="userName" width="200" title="User Name">
+      <ng-template kendoGridCellTemplate let-user>
+        <a routerLink="/account/detail/{{user.id}}">{{user.userName}}</a>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="email" title="Email" width="250" format="{0:d}">
+    </kendo-grid-column>
+    <kendo-grid-column field="phoneNumber" title="Phone Number" width="180" format="{0:n}">
+    </kendo-grid-column>
+    <kendo-grid-column field="role" width="140" title="Role">
+    </kendo-grid-column>
+    <!--<kendo-grid-column title="Actions" width="150">
+      <ng-template kendoGridCellTemplate let-user>
+        <button class="btn btn-primary mr-1" (click)="loadDetail(user.id)">Detail</button>
+        <span> </span>
+        <button class="btn btn-primary" (click)="loadUpdate(user.id)">Update</button>
+      </ng-template>
+    </kendo-grid-column>-->
+  </kendo-grid>
+
+</div>
+
+<!--<div>
+    <select class="float-right" [(ngModel)]="selectOption" (ngModelChange)="loadList()">
+      <option value="Customer">Customer</option>
+      <option value="Driver">Driver</option>
+      <option value="Coordinator">Coordinator</option>
+      <option value="Administrator">Administrator</option>
+    </select>
+  </div>-->
+<!--<div class="list clear">
+  <table class="table table-hover">
+    <thead id="head">
+      <tr>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let user of userList">
+        <td>{{user.id}}</td>
+        <td>{{user.userName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phoneNumber}}</td>
+        <td>{{user.role}}</td>
+        <td>{{user.status}}</td>
+        <td>
+          <button class="btn btn-default" (click)="loadDetail(user.id)">Detail</button>
+          <span> </span>
+          <button class="btn btn-default" (click)="loadUpdate(user.id)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>-->

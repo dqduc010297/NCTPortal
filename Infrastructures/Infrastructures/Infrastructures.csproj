@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\EntityFramework\Groove.AspNetCore.EntityFramework\Groove.AspNetCore.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\UnitOfWork\Groove.AspNetCore.UnitOfWork\Groove.AspNetCore.UnitOfWork.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\DataBinding\Groove.AspNetCore.DataBinding.AutoMapperExtentions\Groove.AspNetCore.DataBinding.AutoMapperExtentions.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Domain\Groove.AspNetCore.Domain\Groove.AspNetCore.Domain.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\EntityFramework\Groove.AspNetCore.EntityFramework\Groove.AspNetCore.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\UnitOfWork\Groove.AspNetCore.UnitOfWork.EntityFramework\Groove.AspNetCore.UnitOfWork.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\UnitOfWork\Groove.AspNetCore.UnitOfWork\Groove.AspNetCore.UnitOfWork.csproj" />
+    <ProjectReference Include="..\..\Domains\Domains\Domains.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.identity.entityframeworkcore\2.0.3\lib\netstandard2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0" />
+    <PackageReference Include="Telerik.UI.for.AspNet.Core.Trial" Version="2018.2.620" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+  </ItemGroup>
+
+</Project>

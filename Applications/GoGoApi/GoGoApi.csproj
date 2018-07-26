@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\CreateDatabase\**" />
+    <Content Remove="Controllers\CreateDatabase\**" />
+    <EmbeddedResource Remove="Controllers\CreateDatabase\**" />
+    <None Remove="Controllers\CreateDatabase\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Telerik.UI.for.AspNet.Core.Trial" Version="2018.2.620" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\IoC\Groove.AspNetCore.IoC.Autofact\Groove.AspNetCore.IoC.Autofact.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Mvc\Groove.AspNetCore.Mvc.JwtBearer\Groove.AspNetCore.Mvc.JwtBearer.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Mvc\Groove.AspNetCore.Mvc\Groove.AspNetCore.Mvc.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\UnitOfWork\Groove.AspNetCore.UnitOfWork.EntityFramework\Groove.AspNetCore.UnitOfWork.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\UnitOfWork\Groove.AspNetCore.UnitOfWork\Groove.AspNetCore.UnitOfWork.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Validation\Groove.AspNetCore.FluentValidation\Groove.AspNetCore.FluentValidation.csproj" />
+    <ProjectReference Include="..\..\Domains\Domains\Domains.csproj" />
+    <ProjectReference Include="..\..\Infrastructures\Infrastructures\Infrastructures.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>Preserve</TypeScriptJSXEmit>
+    <TypeScriptModuleKind />
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+
+</Project>

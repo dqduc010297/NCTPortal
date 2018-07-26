@@ -1,0 +1,32 @@
+/*#body-row {
+  background-color: #e6e6ff;
+  .main-section{
+    background-color: #fff;
+  }
+}*/
+#body-row {
+  background-color: #e6e6ff;
+
+  .main-section {
+    background-color: #fff;
+  }
+}
+
+.centered-form {
+  display: flex;
+  min-height: 90vh;
+  width: 100%;
+  background-color: #f2f2f2;
+  background-size: cover;
+}
+#nav{
+  background-color:white;
+  clear:both;
+}
+.container-fluid{
+  padding:0px 0px 0px 0px;
+}
+.row{
+  margin-left:0px;
+  margin-right:0px;
+}

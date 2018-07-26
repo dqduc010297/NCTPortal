@@ -1,0 +1,39 @@
+$main-color: #0073e6;
+
+#schedule{
+  background-color:white;
+  margin: 8px 4px 4px 4px;
+}
+
+.breakTime{
+  border: 0px;
+
+}
+
+.event{
+  width:90px;
+  text-align:center;
+}
+#mainBody {
+  margin: 4px 4px 4px 4px;
+}
+h3{
+  text-align:center;
+}
+p{
+  text-align:center;
+  font-weight:500;
+}
+#part {
+}
+.table{
+  border: 1px solid $main-color;
+}
+
+
+#day{
+  width: 20px;
+}
+.session{
+  width:50px;
+}

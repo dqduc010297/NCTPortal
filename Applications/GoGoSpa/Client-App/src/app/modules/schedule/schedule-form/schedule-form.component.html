@@ -1,0 +1,46 @@
+<div id="schedule">
+  <div id="header">
+    <h3>Thời khóa biểu</h3>
+    <p>Học kỳ 2</p>
+    <p>Năm học: 2017-2018</p>
+  </div>
+
+  <div id="mainBody">
+    <table class="table table-bordered table-responsive d-none d-md-block">
+      <thead>
+        <tr>
+          <th id="part">Tiết</th>
+          <th class="event">Thứ 2</th>
+          <th class="event">Thứ 3</th>
+          <th class="event">Thứ 4</th>
+          <th class="event">Thứ 5</th>
+          <th class="event">Thứ 6</th>
+          <th class="event">Thứ 7</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of eventTime">
+          <td>{{event}}</td>
+          <td>Toán</td>
+          <td>Văn</td>
+          <td>Anh</td>
+          <td>Lí</td>
+          <td>Hóa</td>
+          <td>Sinh</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <table class="table table-bordered table-responsive d-sm-block d-md-none">
+      <thead>
+        <tr>
+          <th id="day"></th>
+          <th class="session">Sáng</th>
+          <th class="session">Chiều</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+</div>

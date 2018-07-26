@@ -1,0 +1,16 @@
+$main-color: #0073e6;
+
+.btn-width {
+  width: 90px;
+}
+a {
+  color: $main-color;
+}
+a:hover {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+.max-width-200 {
+  max-width: 100px;
+}

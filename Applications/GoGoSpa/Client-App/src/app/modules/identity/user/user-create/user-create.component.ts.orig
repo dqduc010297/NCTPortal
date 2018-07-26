@@ -1,0 +1,103 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { HttpErrorResponse } from '@angular/common/http';
+import { Location } from '@angular/common';
+import { NotificationService } from 'src/app/shared/component/dialog/notification.service';
+<<<<<<< HEAD
+//import { EmailvalidatorDirective } from 'src/app/shared/directives/emailvalidator.directive';
+=======
+
+>>>>>>> 04a28274459d752afe3c9fc56bc412e02383f1db
+import { AdminConfigService } from '../../../../shared/configs/admin-config/admin-config.service';
+import { UserService } from '../user.service';
+
+@Component({
+  selector: 'app-user-create',
+  templateUrl: './user-create.component.html',
+  styleUrls: ['./user-create.component.scss']
+})
+export class UserCreateComponent implements OnInit {
+
+  data: any = {};
+  baseUrl: string;
+  public message: string = null;
+  public model = {
+    username: '',
+    password: '',
+    repassword: '',
+    email: '',
+    phonenumber: '',
+    role: ''
+  };
+  public isError: boolean = false;
+  public lStorage = localStorage.length;
+
+  constructor(
+    private _router: Router,
+    private _location: Location,
+    private _notificationService: NotificationService,
+    private _configService: AdminConfigService,
+    private _userService: UserService
+  ) {
+    this.baseUrl = _configService.getCreateUserURI();
+  }
+
+  ngOnInit() {
+  }
+
+  onCreate() {
+    // TODO: Move all HTTPs request relate to user API into seperated service
+    // You need to create UserService in ../../identity/user/user.service.ts
+    //
+    // then you call _userService.Create(this.model).subcrible(result=>{
+    //  this.data = result
+    //  this._router.navigate(['account/detail', this.data.value]);
+    // })
+    //
+    // httpOptions, API url... will be managed by API service
+    this._userService.create(this.model).subscribe(result => {
+      this.data = result;
+      this._router.navigate(['account/detail', this.data.value]);
+    }, error => {
+      this.isError = true;
+
+<<<<<<< HEAD
+      let httpError: HttpErrorResponse = error;
+      if (httpError.status === 400) {
+=======
+    if (this.lStorage != 0) {
+      var httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + currentKey.access_token
+        })
+      }
+
+      // TODO: Move all HTTPs request relate to user API into seperated service
+      // You need to create UserService in ../../identity/user/user.service.ts
+      //
+      // then you call _userService.Create(this.model).subcrible(result=>{
+      //  this.data = result
+      //  this._router.navigate(['account/detail', this.data.value]);
+      // })
+      //
+      // httpOptions, API url... will be managed by API service
+      this._http.post(this.baseUrl, this.model, httpOptions).subscribe(result => {
+        this.data = result;
+        console.log(result)
+        this._router.navigate(['account/detail', this.data.value]);
+      }, error => {
+        this.isError = true;
+>>>>>>> 04a28274459d752afe3c9fc56bc412e02383f1db
+
+        this.message = httpError.error.message;
+      } else {
+        this._notificationService.prompError(httpError.message);
+      }
+    });
+  }
+
+  back() {
+    this._location.back();
+  }
+}

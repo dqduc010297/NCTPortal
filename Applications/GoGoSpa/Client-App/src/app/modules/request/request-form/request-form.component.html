@@ -1,0 +1,206 @@
+<div class="container-fluid">
+  <div class="border-custom">
+    <h1 [hidden]="!isCreateFormMode" class="heading">Create Request</h1>
+    <h1 [hidden]="!isUpdateFormMode" class="heading">Update Request</h1>
+    <h1 [hidden]="!isViewFormMode" class="heading">Request Detail</h1>
+  </div>
+  <div class="container-fluid row pt-3">
+
+    <div class="card col-lg-4 col-md-6 col-sm-12">
+      <div class="card-block">
+        <form class="k-form" #mainForm="ngForm" name="mainForm" (ngSubmit)="onSubmitForm(mainForm)">
+          <fieldset>
+            <legend *ngIf="!isCreateFormMode">
+              <span class="code-size">
+                {{formData.code}}
+                <span>
+
+                  <span *ngIf="requestStatus == requestStatusGeneral.Inactive" class="badge badge-pill badge-secondary size">{{requestStatus}}</span>
+                  <span *ngIf="requestStatus == requestStatusGeneral.Sending" class="badge badge-pill badge-primary size">{{requestStatus}}</span>
+                  <span *ngIf="requestStatus == requestStatusGeneral.Accepted" class="badge badge-pill badge-success size">{{requestStatus}}</span>
+                  <span *ngIf="requestStatus == requestStatusGeneral.Rejected" class="badge badge-pill badge-danger size">{{requestStatus}}</span>
+
+
+                  <span *ngIf="requestStatus == requestStatusGeneral.Waiting" class="badge badge-pill badge-primary size">{{requestStatus}}</span>
+
+                  <span *ngIf="requestStatus == requestStatusGeneral.Shipping" class="badge badge-pill badge-primary size">{{requestStatus}}</span>
+                  <span *ngIf="requestStatus == requestStatusGeneral.Unloading" class="badge badge-pill badge-info size">{{requestStatus}}</span>
+                  <span *ngIf="requestStatus == requestStatusGeneral.Completed" class="badge badge-pill badge-success size">{{requestStatus}}</span>
+
+                </span>
+              </span>
+            </legend>
+            <legend *ngIf="isCreateFormMode">
+              <span>Create</span>
+            </legend>
+
+            <div *ngIf="isCoordinator && isViewFormMode" class="btn-wrapper mb-4">
+              <button type="button" class="width btn btn-success btn-sm mr-1" (click)="onClickStatus(formData.id, requestStatusGeneral.Accepted)"
+                       *ngIf="requestStatus == requestStatusGeneral.Rejected || requestStatus == requestStatusGeneral.Sending">
+                Accept
+              </button>
+              <button type="button" class="width btn btn-danger btn-sm" (click)="onClickStatus(formData.id, requestStatusGeneral.Rejected)"
+                       *ngIf="requestStatus == requestStatusGeneral.Accepted || requestStatus == requestStatusGeneral.Sending">
+                Reject
+              </button>
+            </div>
+
+
+            <div class="form-group">
+              <label for="receiverName">Receiver Name </label>
+              <input type="text" class="form-control" [(ngModel)]="formData.receiverName" name="receiverName" #receiverName="ngModel" required [readonly]="isViewFormMode">
+              <div [ngClass]="{'hidden': receiverName.valid || (!receiverName.dirty && !receiverName.touched) }" class="validation-message2">
+                Receiver Name is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="receiverPhoneNumber">Receiver Phone Number</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.receiverPhoneNumber" name="receiverPhoneNumber" #receiverPhoneNumber="ngModel" required pattern="[0-9]+" [readonly]="isViewFormMode">
+              <div [ngClass]="{'hidden': receiverPhoneNumber.valid || (!receiverPhoneNumber.dirty && !receiverPhoneNumber.touched) }" class="validation-message2">
+                <div *ngIf="receiverPhoneNumber?.errors?.required">
+                  Phone Number is required.
+                </div>
+                <div *ngIf="receiverPhoneNumber?.errors?.pattern">
+                  Phone Number must be a number.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="packageQuantity">Package Quantity</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.packageQuantity" name="packageQuantity" #packageQuantity="ngModel" required pattern="[0-9]+" [readonly]="isViewFormMode">
+              <div [ngClass]="{'hidden': packageQuantity.valid || (!packageQuantity.dirty && !packageQuantity.touched) }" class="validation-message2">
+                <div *ngIf="packageQuantity?.errors?.required">
+                  Package Quantity is required.
+                </div>
+                <div *ngIf="packageQuantity?.errors?.pattern">
+                  Package Quantityr must be a number.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="!isViewFormMode">
+              <label>Picking Date</label>
+              <div class="row px-3">
+                <kendo-datepicker class="col form-control" [(ngModel)]="formData.pickingDate" name="formData.pickingDate"></kendo-datepicker>&nbsp;
+                <kendo-timepicker class="col form-control" [(ngModel)]="formData.pickingDate" name="formData.pickingDate"></kendo-timepicker>
+              </div>
+            </div>
+            <div class="form-group" *ngIf="isViewFormMode">
+              <label>Picking Date</label>
+              <div class="row px-3">
+                <input type="text" class="form-control" value="{{formData.pickingDate | date: 'M/d/y, h:mm a'}}" required readonly>
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="!isViewFormMode">
+              <label>Expected Date</label>
+              <div class="row px-3">
+                <kendo-datepicker class="col form-control" [(ngModel)]="formData.expectedDate" name="formData.expectedDate"></kendo-datepicker>&nbsp;
+                <kendo-timepicker class="col form-control" [(ngModel)]="formData.expectedDate" name="formData.expectedDate"></kendo-timepicker>
+              </div>
+            </div>
+            <div class="form-group" *ngIf="isViewFormMode">
+              <label>Expected Date</label>
+              <div class="row px-3">
+                <input type="text" class="form-control" value="{{formData.expectedDate | date: 'M/d/y, h:mm a'}}" required readonly>
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="!isViewFormMode">
+              <label for="wareHouse">Vehicle Feature</label>
+              <kendo-combobox class="form-control" [(ngModel)]="formData.vehicleFeature" name="formData.vehicleFeature" #vehicleFeature="ngModel" required
+                              [data]="vehicleFeatureList"
+                              [valueField]="'value'"
+                              [textField]="'displayName'"
+                              [filterable]="true"
+                              (filterChange)="filterVehicleFeature($event)">
+              </kendo-combobox>
+              <div [ngClass]="{'hidden': vehicleFeature.valid || (!vehicleFeature.dirty && !vehicleFeature.touched) }" class="validation-message2">
+                Vehicle Feature is required.
+              </div>
+            </div>
+            <div class="form-group" *ngIf="isViewFormMode">
+              <label>Vehicle Feature</label>
+              <input type="text" class="form-control" value="{{formData.vehicleFeature.displayName}}" required readonly>
+            </div>
+
+            <div class="form-group" *ngIf="!isViewFormMode">
+              <label for="wareHouse">Picking location</label>
+              <kendo-combobox class="form-control" [(ngModel)]="formData.wareHouse" name="formData.wareHouse" #wareHouse="ngModel" required
+                              [data]="warehouseList"
+                              [valueField]="'value'"
+                              [textField]="'displayName'"
+                              [filterable]="true"
+                              (filterChange)="filterWarehouse($event)">
+              </kendo-combobox>
+              <div [ngClass]="{'hidden': wareHouse.valid || (!wareHouse.dirty && !wareHouse.touched) }" class="validation-message2">
+                Picking location is required.
+              </div>
+            </div>
+            <div class="form-group" *ngIf="isViewFormMode">
+              <label>Picking Location</label>
+              <input type="text" class="form-control" value="{{formData.wareHouse.displayName}}" required readonly>
+            </div>
+
+
+            <div class="form-group">
+              <label for="address">Delivery Address</label>
+              <input (change)="onChangeAddress(formData.address)" type="text" class="form-control" [(ngModel)]="formData.address" name="address" #address="ngModel" required [readonly]="isViewFormMode">
+              <div [ngClass]="{'hidden': address.valid || (!address.dirty && !address.touched)}" class="validation-message2">
+                Delivery Address is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" value="110" [(ngModel)]="formData.deliveryLatitude" name="deliveryLatitude" #deliveryLatitude="ngModel" hidden>
+              <!--<div *ngIf="deliveryLatitude.invalid && (deliveryLatitude.dirty || deliveryLatitude.touched)"
+         class="alert alert-danger">
+      <div *ngIf="deliveryLatitude.errors.required">
+        Delivery Latitude is required.
+      </div>
+    </div>-->
+            </div>
+
+            <div class="form-group ">
+              <input type="text" class="form-control" value="110" [(ngModel)]="formData.deliveryLongitude" name="deliveryLongitude" #deliveryLongitude="ngModel" hidden>
+              <!--<div *ngIf="deliveryLongitude.invalid && (deliveryLongitude.dirty || deliveryLongitude.touched)"
+         class="alert alert-danger">
+      <div *ngIf="deliveryLongitude.errors.required">
+        Delivery Longitude is required.
+      </div>
+    </div>-->
+            </div>
+            <div *ngIf="isCustomer && isViewFormMode" class="btn-wrapper float-right">
+              <button type="button" class="width btn btn-primary btn-sm" (click)="onClickStatus(formData.id, requestStatusGeneral.Sending)"
+                      *ngIf="requestStatus == requestStatusGeneral.Inactive">
+                Activate
+              </button>
+              <button type="button" class="width btn btn-secondary btn-sm" (click)="onClickStatus(formData.id, requestStatusGeneral.Inactive)"
+                      *ngIf="requestStatus == requestStatusGeneral.Sending">
+                Deactivate
+              </button>
+            </div>
+
+            <div *ngIf="isCustomer" class="btn-wrapper">
+              <div class="float-right">
+                <button *ngIf="isUpdateFormMode" type="button" class="btn btn-secondary btn-sm mr-1" (click)="onNavigateToViewPage()">Cancel</button>
+                <button *ngIf="!isViewFormMode" type="submit" class="btn btn-primary btn-sm" [disabled]="mainForm.invalid">Save</button>
+                <button *ngIf="isViewFormMode && (requestStatus == requestStatusGeneral.Inactive || requestStatus == requestStatusGeneral.Rejected)"
+                        type="button" routerLink="/request/form/update/{{formData?.id}}" class="btn btn-info btn-sm  mr-1">
+                  Update
+                </button>
+              </div>
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-6 col-sm-12 ">
+     </div>
+
+  </div>
+
+</div>

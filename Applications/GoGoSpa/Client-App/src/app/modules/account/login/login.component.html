@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9 centered-form">
+
+    </div>
+
+    <div class="col-md-3" id="container">
+      <div class="container" id="box">
+        <!--<form #myForm="ngForm" (ngSubmit)="onSubmit()" name="myForm">
+          <div class="form-field">
+            <p id="tille">TRƯỜNG TRUNG HỌC PHỔ THÔNG<br />NGUYỄN CÔNG TRỨ</p>
+          </div>
+          <div class="form-field">
+            <label for="username">User Name</label>
+            <input type="text" class="form-control" id="username" [(ngModel)]="model.username" name="username" #username="ngModel" required autofocus>
+
+
+            <div [ngClass]="{'hidden': username.valid || username.pristine}" class="validation-message">
+              <p style="color:red">
+                Username is required.
+              </p>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="pwd">Password</label>
+            <input type="password" class="form-control" id="pwd" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+            <div [ngClass]="{'hidden': password.valid || password.pristine}" class="validation-message">
+              <p style="color:red">
+                Password is required.
+              </p>
+            </div>
+          </div>
+          <div class="form-field">
+            <ul class="pagination">
+              <li>
+                <label><input type="checkbox"> Remember me</label>
+              </li>
+              <li>
+                <a id="forgot" (click)="displayToastr()" style="color:#0066ff">Forgot password?</a>
+              </li>
+            </ul>
+          </div>
+          <div class="form-field">
+            <button type="submit" class="btn btn-primary active">Sign In</button>
+            <div [hidden]="!isError" class="validation-message">
+              <p style="color:red">
+                {{message}}
+              </p>
+            </div>
+          </div>
+        </form>-->
+       
+          <p id="tilleFirst">TRƯỜNG TRUNG HỌC PHỔ THÔNG<br /></p>
+          <p id="tilleSecond">NGUYỄN CÔNG TRỨ</p>
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label>Tên đăng nhập</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Mật khẩu</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+
+          <a href="#">Quên mật khẩu</a>
+          <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>

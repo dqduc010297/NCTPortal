@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="border-custom">
+    <h1 class="heading">Profile</h1>
+  </div>
+  <div class="container pt-2">
+    <div class="row">
+      <div class="row col-9 ml-1">
+        <button class="btn btn-secondary" (click)="back()">Back</button>&nbsp;
+        <button class="btn btn-primary" (click)="update(userProfile.id)">Update</button>&nbsp;
+        <button class="btn btn-primary" (click)="displayToastr()">Change Password</button>&nbsp;
+      </div>
+    </div>
+    <div class="row pt-2">
+      <div class="col-md-3 col-lg-3 pt-3 " align="center">
+        <img alt="User Pic" src="https://image.flaticon.com/icons/svg/3/3641.svg" class="img-circle">
+
+        <div class="d-flex justify-content-center pt-3">
+          <input style="display: none"
+                 type="file" (change)="onFileChanged($event)"
+                 #fileInput>
+          <button class="btn btn-primary" (click)="displayToastr()" id="AUpload">Upload your photo</button>
+        </div>
+      </div>
+      <div class="col-md-9 col-lg-9 pt-3">
+
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>Full name:</th>
+              <td>{{userProfile.userName}}</td>
+            </tr>
+            <tr>
+              <th>Role:</th>
+              <td>{{userRole}}</td>
+            </tr>
+            <tr>
+              <th>Email:</th>
+              <td>{{userProfile.email}}</td>
+            </tr>
+            <tr>
+              <th>Phone number:</th>
+              <td>{{userProfile.phoneNumber}}</td>
+            </tr>
+            <tr>
+              <th>Address:</th>
+              <td>132 Hàm Nghi, Quận 1, Tp. Hồ Chí Minh</td>
+            </tr>
+            <tr>
+              <th>Join date:</th>
+              <td>{{userProfile.createdDate | date:'medium'}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

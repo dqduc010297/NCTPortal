@@ -1,0 +1,35 @@
+$main-color: #0073e6;
+$sidebar-color: #e6e6ff;
+$my-color: #0073e6;
+
+
+.list {
+  margin-top: 10px;
+  border: 0.5px solid #000205;
+}
+
+#head {
+  color: black;
+  background-color: #f2f2f2;
+}
+
+/*h1 {
+  color: $main-color;
+}*/
+
+#mySelect {
+  margin-left: 1025px;
+}
+
+#body {
+}
+
+
+a {
+  color: $main-color;
+}
+
+a:hover {
+  color: darkblue;
+  text-decoration: underline;
+}

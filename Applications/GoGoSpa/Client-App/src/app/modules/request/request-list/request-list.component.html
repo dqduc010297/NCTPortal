@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="border-custom">
+    <h1 class="heading">Request Management</h1>
+  </div>
+  <div class="py-3">
+    <button *ngIf="canCreate" class="btn btn-success"  routerLink="/request/form/create">Create Request</button>
+  </div>
+
+  <kendo-grid [data]="view"
+              [pageable]="true"
+              
+              [sortable]="true"
+              [pageSize]="state.take"
+              [skip]="state.skip"
+              [sort]="state.sort"
+              [kendoGridSelectBy]="true"
+              (dataStateChange)="dataStateChange($event)">
+    <kendo-grid-column field="code" title="Code" [width]="180">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <a routerLink="/request/form/view/{{dataItem.id}}">{{dataItem.code}}</a>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="wareHouse" title="Picking Location"></kendo-grid-column>
+    <kendo-grid-column field="address" title="Destination"></kendo-grid-column>
+    <kendo-grid-column field="pickingDate" format="{0:dd/MM/yyyy, hh:mm a}" title="Picking Date" [width]="170"></kendo-grid-column>
+    <kendo-grid-column field="expectedDate" format="{0:dd/MM/yyyy, hh:mm a}" title="Expected Date" [width]="170"></kendo-grid-column>
+    <kendo-grid-column field="status" title="Status" [width]="105">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <span *ngIf="dataItem.status == requestStatus.Inactive" class="badge badge-pill badge-secondary">{{dataItem.status}}</span>
+        <span *ngIf="dataItem.status == requestStatus.Sending" class="badge badge-pill badge-primary">{{dataItem.status}}</span>
+        <span *ngIf="dataItem.status == requestStatus.Accepted" class="badge badge-pill badge-success">{{dataItem.status}}</span>
+        <span *ngIf="dataItem.status == requestStatus.Rejected" class="badge badge-pill badge-danger">{{dataItem.status}}</span>
+      </ng-template>
+    </kendo-grid-column>
+
+</kendo-grid>
+</div>
